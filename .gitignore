@@ -4,5 +4,7 @@ dist-electron/
 coverage/
 *.log
 .DS_Store
-.out
-.vite
+.out/
+.vite/
+
+
