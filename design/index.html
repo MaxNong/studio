@@ -1,0 +1,655 @@
+<!doctype html>
+<!-- XT Work Studio interactive design prototype -->
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b0c0e" />
+    <title>XT Work Studio</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <header class="brand">
+          <!-- <div class="brand-mark" aria-hidden="true">
+            <span></span><span></span>
+          </div> -->
+          <button class="brand-name" id="brandHome">XT Work Studio</button>
+          <button class="icon-button search-button" aria-label="搜索">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg>
+          </button>
+        </header>
+
+        <nav class="primary-nav" aria-label="主导航">
+          <button class="nav-item new-task" data-route="tasks">
+            <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4Z"/></svg>
+            <span>新建任务</span>
+            <kbd>⌘ K</kbd>
+          </button>
+          <button class="nav-item route-item" data-route="knowledge">
+            <svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H11v16H6.5A2.5 2.5 0 0 0 4 21.5Z"/><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H13v16h4.5a2.5 2.5 0 0 1 2.5 2.5Z"/></svg>
+            <span>知识库</span>
+          </button>
+          <button class="nav-item route-item" data-route="plugins">
+            <svg viewBox="0 0 24 24"><path d="M8 3h3v4h2V3h3a2 2 0 0 1 2 2v4h2a2 2 0 0 1 2 2v3h-4v2h4v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"/></svg>
+            <span>插件</span>
+          </button>
+          <button class="nav-item route-item" data-route="skills">
+            <svg viewBox="0 0 24 24"><path d="m12 3 2.2 4.8L19 10l-4.8 2.2L12 17l-2.2-4.8L5 10l4.8-2.2Z"/><path d="m19 16 .9 2.1L22 19l-2.1.9L19 22l-.9-2.1L16 19l2.1-.9Z"/></svg>
+            <span>技能</span>
+          </button>
+        </nav>
+
+        <section class="task-module">
+          <div class="module-label">
+            <span>任务</span>
+          </div>
+
+          <div class="task-module-scroll">
+            <section class="task-cluster">
+              <button class="cluster-title" aria-expanded="true">
+                <svg class="folder-icon" viewBox="0 0 24 24"><path d="M3 7h6l2 2h10v10H3Z"/><path d="M3 7V5h7l2 2"/></svg>
+                <span>进行中</span>
+              </button>
+              <div class="cluster-tasks">
+                <button class="sidebar-task selected" data-task="接口错误排查">
+                  <span>接口错误排查</span>
+                  <small>12m</small>
+                </button>
+                <button class="sidebar-task" data-task="竞品 AI 工作台调研">
+                  <span>竞品 AI 工作台调研</span>
+                  <small>34m</small>
+                </button>
+              </div>
+            </section>
+
+            <section class="task-cluster">
+              <button class="cluster-title" aria-expanded="true">
+                <svg class="folder-icon waiting-folder" viewBox="0 0 24 24"><path d="M3 7h6l2 2h10v10H3Z"/><path d="M3 7V5h7l2 2"/></svg>
+                <span>待确认</span>
+              </button>
+              <div class="cluster-tasks">
+                <button class="sidebar-task" data-task="支付模块重构">
+                  <span>支付模块重构</span>
+                  <small>1h</small>
+                </button>
+                <button class="sidebar-task" data-task="权限模型调研">
+                  <span>权限模型调研</span>
+                  <small>3h</small>
+                </button>
+              </div>
+            </section>
+
+            <section class="recent-tasks">
+              <div class="module-label recent-label"><span>最近任务</span></div>
+              <button class="sidebar-task recent-task" data-task="退款规则查询">
+                <span>退款规则查询</span>
+                <small>昨天</small>
+              </button>
+              <button class="sidebar-task recent-task" data-task="生成发布说明">
+                <span>生成发布说明</span>
+                <small>周五</small>
+              </button>
+              <button class="sidebar-task recent-task" data-task="梳理支付接口规范">
+                <span>梳理支付接口规范</span>
+                <small>7月24日</small>
+              </button>
+            </section>
+          </div>
+        </section>
+
+        <footer class="user-card">
+          <span class="avatar">MX</span>
+          <span><strong>mu xiaonong</strong><small>产品与研发空间</small></span>
+          <button class="icon-button user-menu-button" id="userMenuButton" aria-label="打开用户菜单" aria-expanded="false">···</button>
+          <div class="user-menu" id="userMenu" hidden>
+            <button id="settingsEntry">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.8 1.8 0 0 0 .4 2l.1.1-2.8 2.8-.1-.1a1.8 1.8 0 0 0-2-.4 1.8 1.8 0 0 0-1.1 1.6v.2h-4V21A1.8 1.8 0 0 0 8.8 19.4a1.8 1.8 0 0 0-2 .4l-.1.1-2.8-2.8L4 17a1.8 1.8 0 0 0 .4-2A1.8 1.8 0 0 0 2.8 14H2v-4h.8A1.8 1.8 0 0 0 4.4 9a1.8 1.8 0 0 0-.4-2l-.1-.1 2.8-2.8.1.1a1.8 1.8 0 0 0 2 .4A1.8 1.8 0 0 0 10 3V2h4v1a1.8 1.8 0 0 0 1 1.6 1.8 1.8 0 0 0 2-.4l.1-.1 2.8 2.8-.1.1a1.8 1.8 0 0 0-.4 2 1.8 1.8 0 0 0 1.6 1h1v4h-1a1.8 1.8 0 0 0-1.6 1Z"/></svg>
+              <span>设置</span>
+              <kbd>⌘ ,</kbd>
+            </button>
+          </div>
+        </footer>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <div class="task-title">
+            <svg viewBox="0 0 24 24"><path d="M3 7h6l2 2h10v10H3Z"/><path d="M3 7V5h7l2 2"/></svg>
+            <span id="taskTitle">接口错误排查</span>
+            <button class="more-button" id="taskMoreButton" aria-label="更多操作">···</button>
+          </div>
+        </header>
+
+        <div class="task-canvas" id="taskView">
+          <section class="task-brief">
+            <div class="brief-heading">
+              <div>
+                <span class="eyebrow">任务目标</span>
+                <h1>定位支付接口偶发失败，并给出可验证的修复方案</h1>
+              </div>
+              <span class="priority-chip">P1 · 今天</span>
+            </div>
+            <p>结合 Sentry 错误、Kibana 日志与本地代码，确认 <code>/api/v2/payment/confirm</code> 超时的根因。修改前先请求审批。</p>
+          </section>
+
+          <section class="execution-section">
+            <div class="execution-header">
+              <div>
+                <span class="eyebrow">执行轨道</span>
+                <span class="elapsed">已运行 12 分 48 秒</span>
+              </div>
+              <div class="execution-actions">
+                <button class="quiet-button">查看日志</button>
+                <button class="stop-button"><span></span> 停止</button>
+              </div>
+            </div>
+
+            <div class="timeline">
+              <article class="timeline-item complete">
+                <div class="rail-node"><span>✓</span></div>
+                <div class="timeline-content">
+                  <div class="step-title">
+                    <strong>理解问题与划定范围</strong>
+                    <time>10:42</time>
+                  </div>
+                  <p>已识别核心接口、错误时间范围和验收标准。</p>
+                </div>
+              </article>
+
+              <article class="timeline-item complete">
+                <div class="rail-node"><span>✓</span></div>
+                <div class="timeline-content">
+                  <div class="step-title">
+                    <strong>检索线上证据</strong>
+                    <span class="runner-badge api-badge">公司 API</span>
+                    <time>10:47</time>
+                  </div>
+                  <p>聚合 23 条 Sentry 事件与 186 条日志，错误集中在支付确认后的状态回写阶段。</p>
+                  <div class="evidence-row">
+                    <button><span class="evidence-icon sentry">S</span> Sentry · 23 个事件</button>
+                    <button><span class="evidence-icon kibana">K</span> Kibana · 186 条日志</button>
+                  </div>
+                </div>
+              </article>
+
+              <article class="timeline-item running">
+                <div class="rail-node"><span class="spinner"></span></div>
+                <div class="timeline-content active-step">
+                  <div class="step-title">
+                    <strong>分析代码调用链</strong>
+                    <span class="runner-badge codex-badge">本地 Codex</span>
+                    <span class="live-label">执行中</span>
+                  </div>
+                  <p>正在检查重试策略与事务边界，目前发现状态回写与第三方确认共享同一个超时设置。</p>
+                  <div class="terminal-preview">
+                    <div class="terminal-title">
+                      <span><i></i><i></i><i></i></span>
+                      <span>本地终端</span>
+                      <span>finance-pc · fx-agent</span>
+                    </div>
+                    <div class="terminal-line"><span class="prompt">›</span> rg <em>"confirmPayment|updatePaymentStatus"</em> src</div>
+                    <div class="terminal-line result">src/services/payment/confirm.ts:84: await updatePaymentStatus(...)</div>
+                    <div class="terminal-line result">src/services/payment/retry.ts:31: timeout: PAYMENT_TIMEOUT</div>
+                    <div class="terminal-cursor"></div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="timeline-item pending">
+                <div class="rail-node"><span>4</span></div>
+                <div class="timeline-content">
+                  <div class="step-title"><strong>形成修改方案并请求审批</strong></div>
+                  <p>预计涉及 2 个代码仓库、4 个文件，执行单元测试与跨仓回归验证。</p>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <div class="composer-wrap">
+            <div class="composer">
+              <textarea id="composerInput" rows="1" placeholder="补充要求，或调整当前任务…"></textarea>
+              <div class="composer-footer">
+                <div class="composer-tools">
+                  <button class="round-add" aria-label="添加上下文">＋</button>
+                  <button class="runner-select" id="openRunner">
+                    <span class="runner-logo">⌘</span>
+                    <span id="runnerName">本地 Codex</span>
+                    <span class="chevron">⌄</span>
+                  </button>
+                  <span class="connection-state" id="connectionState"><i></i> 本地已连接</span>
+                  <span class="permission"><i></i> 修改前审批</span>
+                </div>
+                <div class="composer-submit">
+                  <button class="model-select">5.5 中 <span>⌄</span></button>
+                  <button class="send-button" id="sendButton" aria-label="发送">
+                    <svg viewBox="0 0 24 24"><path d="M12 19V5"/><path d="m6 11 6-6 6 6"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <p class="composer-hint">Agent 可能会执行命令和修改文件。高风险操作需要你的确认。</p>
+          </div>
+        </div>
+
+        <section class="knowledge-view" id="knowledgeView" hidden>
+          <div class="knowledge-shell">
+            <header class="knowledge-hero">
+              <div>
+                <span class="eyebrow">团队知识</span>
+                <h1>让每个任务都从可信资料开始</h1>
+                <p>集中连接内部文档、代码仓库和业务数据。Agent 只会使用当前任务获得授权的内容，并在回答中保留引用。</p>
+              </div>
+              <button class="primary-action">＋ 添加知识源</button>
+            </header>
+
+            <div class="knowledge-toolbar">
+              <label class="knowledge-search">
+                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg>
+                <input type="search" placeholder="搜索知识集合、文档或连接…" />
+                <kbd>⌘ F</kbd>
+              </label>
+              <div class="knowledge-tabs" role="tablist">
+                <button class="active">知识集合</button>
+                <button>全部资源</button>
+                <button>同步记录</button>
+              </div>
+            </div>
+
+            <div class="knowledge-layout">
+              <aside class="collection-panel">
+                <div class="panel-label"><span>知识集合</span><b>4</b></div>
+                <button class="collection-row active">
+                  <span class="collection-icon engineering">研</span>
+                  <span><strong>研发与交付规范</strong><small>1,284 项内容</small></span>
+                  <i></i>
+                </button>
+                <button class="collection-row">
+                  <span class="collection-icon product">产</span>
+                  <span><strong>产品与业务资料</strong><small>836 项内容</small></span>
+                </button>
+                <button class="collection-row">
+                  <span class="collection-icon operation">运</span>
+                  <span><strong>运营制度</strong><small>412 项内容</small></span>
+                </button>
+                <button class="collection-row">
+                  <span class="collection-icon support">客</span>
+                  <span><strong>客服知识</strong><small>269 项内容</small></span>
+                </button>
+                <button class="new-collection">＋ 新建知识集合</button>
+              </aside>
+
+              <section class="collection-detail">
+                <header class="collection-detail-header">
+                  <div>
+                    <div class="collection-title-row">
+                      <span class="collection-icon engineering">研</span>
+                      <h2>研发与交付规范</h2>
+                      <span class="healthy-chip"><i></i> 已同步</span>
+                    </div>
+                    <p>工程规范、接口文档和仓库知识。最近一次同步于 8 分钟前。</p>
+                  </div>
+                  <button class="quiet-outline">管理权限</button>
+                </header>
+
+                <div class="collection-stats">
+                  <div><small>可检索内容</small><strong>1,284</strong></div>
+                  <div><small>连接资源</small><strong>21</strong></div>
+                  <div><small>本周被任务引用</small><strong>186</strong></div>
+                </div>
+
+                <div class="source-table-head">
+                  <span>已连接资源</span>
+                  <button>＋ 连接资源</button>
+                </div>
+                <div class="knowledge-source-list">
+                  <button class="knowledge-source-row">
+                    <span class="source-icon document">D</span>
+                    <span><strong>研发技术文档</strong><small>钉钉文档空间 · 842 篇</small></span>
+                    <span class="sync-fresh"><i></i> 刚刚同步</span>
+                    <span class="row-more">···</span>
+                  </button>
+                  <button class="knowledge-source-row">
+                    <span class="source-icon git">⑂</span>
+                    <span><strong>核心代码仓库</strong><small>GitLab · 18 个仓库</small></span>
+                    <span class="sync-fresh"><i></i> 8 分钟前</span>
+                    <span class="row-more">···</span>
+                  </button>
+                  <button class="knowledge-source-row">
+                    <span class="source-icon api-source">{ }</span>
+                    <span><strong>内部 API 文档</strong><small>YApi · 424 个接口</small></span>
+                    <span class="sync-fresh"><i></i> 21 分钟前</span>
+                    <span class="row-more">···</span>
+                  </button>
+                </div>
+
+                <div class="knowledge-policy">
+                  <div class="policy-icon">⌁</div>
+                  <div>
+                    <strong>任务按需授权</strong>
+                    <p>知识集合不会自动进入所有任务。创建任务或执行过程中添加后，Agent 才能检索，并在产出中标注来源。</p>
+                  </div>
+                  <button>查看规则</button>
+                </div>
+              </section>
+            </div>
+          </div>
+        </section>
+
+        <section class="capability-view" id="pluginsView" hidden>
+          <div class="capability-shell">
+            <header class="capability-hero">
+              <div>
+                <span class="eyebrow">能力扩展</span>
+                <h1>插件</h1>
+                <p>插件把技能、MCP 工具和外部服务连接打包成一个可管理的能力单元。</p>
+              </div>
+              <button class="primary-action">＋ 安装插件</button>
+            </header>
+
+            <div class="capability-toolbar">
+              <label class="capability-search">
+                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg>
+                <input id="pluginSearch" type="search" placeholder="搜索插件、技能或 MCP…" />
+              </label>
+              <div class="capability-tabs" data-filter-group="plugins">
+                <button class="active" data-filter="all">已安装 <b>4</b></button>
+                <button data-filter="enabled">已启用 <b>3</b></button>
+                <button data-filter="disabled">已停用 <b>1</b></button>
+              </div>
+            </div>
+
+            <div class="plugin-grid" id="pluginGrid">
+              <article class="plugin-card" data-name="figma design ui code connect" data-state="enabled">
+                <div class="plugin-card-head">
+                  <span class="plugin-logo figma-logo">F</span>
+                  <div><strong>Figma</strong><small>OpenAI bundled</small></div>
+                  <button class="toggle-switch on" role="switch" aria-checked="true"><i></i></button>
+                </div>
+                <p>在代码与设计之间双向同步页面、组件和设计系统。</p>
+                <div class="plugin-capabilities">
+                  <span>6 个技能</span><span>14 个工具</span><span>Code Connect</span>
+                </div>
+                <footer><span class="status-text"><i></i>运行正常</span><button class="plugin-detail-button">查看详情</button></footer>
+              </article>
+
+              <article class="plugin-card" data-name="google drive docs sheets slides cloud" data-state="enabled">
+                <div class="plugin-card-head">
+                  <span class="plugin-logo drive-logo">G</span>
+                  <div><strong>Google Drive</strong><small>Connected app</small></div>
+                  <button class="toggle-switch on" role="switch" aria-checked="true"><i></i></button>
+                </div>
+                <p>查找和编辑 Drive、Docs、Sheets 与 Slides 中的团队资料。</p>
+                <div class="plugin-capabilities">
+                  <span>4 个技能</span><span>8 个工具</span><span>OAuth</span>
+                </div>
+                <footer><span class="status-text"><i></i>已连接</span><button class="plugin-detail-button">查看详情</button></footer>
+              </article>
+
+              <article class="plugin-card" data-name="browser chrome testing web automation" data-state="enabled">
+                <div class="plugin-card-head">
+                  <span class="plugin-logo browser-logo">B</span>
+                  <div><strong>Browser</strong><small>OpenAI bundled</small></div>
+                  <button class="toggle-switch on" role="switch" aria-checked="true"><i></i></button>
+                </div>
+                <p>控制内嵌浏览器完成页面验证、交互测试和截图检查。</p>
+                <div class="plugin-capabilities">
+                  <span>1 个技能</span><span>浏览器控制</span>
+                </div>
+                <footer><span class="status-text"><i></i>运行正常</span><button class="plugin-detail-button">查看详情</button></footer>
+              </article>
+
+              <article class="plugin-card" data-name="sites hosting deploy website" data-state="disabled">
+                <div class="plugin-card-head">
+                  <span class="plugin-logo sites-logo">S</span>
+                  <div><strong>Sites</strong><small>OpenAI bundled</small></div>
+                  <button class="toggle-switch" role="switch" aria-checked="false"><i></i></button>
+                </div>
+                <p>构建、保存版本并将网站部署到生产环境。</p>
+                <div class="plugin-capabilities">
+                  <span>2 个技能</span><span>7 个工具</span><span>部署</span>
+                </div>
+                <footer><span class="status-text disabled"><i></i>已停用</span><button class="plugin-detail-button">查看详情</button></footer>
+              </article>
+            </div>
+            <div class="filter-empty" id="pluginEmpty" hidden>没有匹配的插件</div>
+          </div>
+        </section>
+
+        <section class="capability-view" id="skillsView" hidden>
+          <div class="capability-shell">
+            <header class="capability-hero">
+              <div>
+                <span class="eyebrow">Agent 工作流</span>
+                <h1>技能</h1>
+                <p>技能是一组可复用的任务说明、参考资料与脚本。选择技能后可以直接以它为起点创建任务。</p>
+              </div>
+              <button class="quiet-outline">↻ 重新扫描</button>
+            </header>
+
+            <div class="capability-toolbar">
+              <label class="capability-search">
+                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg>
+                <input id="skillSearch" type="search" placeholder="搜索技能、来源或依赖…" />
+              </label>
+              <div class="scan-caption">共 42 个技能 · 来自 3 个位置</div>
+            </div>
+
+            <div class="skill-section-label">工作区技能</div>
+            <div class="skill-list" id="skillList">
+              <article class="skill-card" data-name="issue-flow 日志 sentry kibana 排查">
+                <span class="skill-logo">流</span>
+                <div class="skill-card-body">
+                  <header><strong>issue-flow</strong><span class="source-badge workspace">工作区</span></header>
+                  <p>结合 Kibana、Sentry 与前后端源码完成一体化日志排查。</p>
+                  <div class="dependency-row"><span>MCP</span><b>sentry</b><b>chrome-devtools</b></div>
+                </div>
+                <div class="skill-actions"><button class="preview-skill">预览</button><button class="use-skill">使用</button></div>
+              </article>
+              <article class="skill-card" data-name="boss-cr-skill code review 代码评审">
+                <span class="skill-logo review-skill">审</span>
+                <div class="skill-card-body">
+                  <header><strong>boss-cr-skill</strong><span class="source-badge workspace">工作区</span></header>
+                  <p>执行完整代码评审流程并生成可上传的结构化报告。</p>
+                  <div class="dependency-row"><span>依赖技能</span><b>owasp-security-check</b></div>
+                </div>
+                <div class="skill-actions"><button class="preview-skill">预览</button><button class="use-skill">使用</button></div>
+              </article>
+              <article class="skill-card" data-name="backend-tech-docs 后端 技术方案 钉钉">
+                <span class="skill-logo doc-skill">档</span>
+                <div class="skill-card-body">
+                  <header><strong>backend-tech-docs</strong><span class="source-badge personal">个人</span></header>
+                  <p>按照标准模板生成后端技术方案并写入钉钉文档。</p>
+                  <div class="dependency-row"><span>MCP</span><b>DingTalk Docs</b></div>
+                </div>
+                <div class="skill-actions"><button class="preview-skill">预览</button><button class="use-skill">使用</button></div>
+              </article>
+              <article class="skill-card" data-name="frontend-design ui design visual">
+                <span class="skill-logo design-skill">设</span>
+                <div class="skill-card-body">
+                  <header><strong>frontend-design</strong><span class="source-badge system">系统</span></header>
+                  <p>为新页面和重设计提供有辨识度的视觉方向与交互约束。</p>
+                  <div class="dependency-row"><span>来源</span><b>OpenAI curated</b></div>
+                </div>
+                <div class="skill-actions"><button class="preview-skill">预览</button><button class="use-skill">使用</button></div>
+              </article>
+            </div>
+            <div class="filter-empty" id="skillEmpty" hidden>没有匹配的技能</div>
+          </div>
+        </section>
+      </main>
+
+      <aside class="inspector" id="taskInspector">
+        <header class="inspector-header">
+          <button class="icon-button inspector-toggle" id="inspectorToggle" aria-label="收起任务侧栏" aria-expanded="true">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M16 4v16"/></svg>
+          </button>
+        </header>
+
+        <section class="inspector-section resource-section">
+          <button class="section-title expanded">
+            <span>资源 <b>5</b></span><span>⌃</span>
+          </button>
+          <div class="resource-group-label"><span>代码仓库</span><b>2</b></div>
+          <div class="source-list">
+            <button><span class="source-icon git">⑂</span><span><strong>finance-pc</strong><small>本地 · fx-agent</small></span><i>↗</i></button>
+            <button><span class="source-icon git">⑂</span><span><strong>payment-service</strong><small>本地 · hotfix/timeout</small></span><i>↗</i></button>
+          </div>
+          <div class="resource-group-label"><span>资料与数据</span><b>3</b></div>
+          <div class="source-list">
+            <button><span class="source-icon sentry">S</span><span><strong>Sentry 错误统计</strong><small>23 个相关事件</small></span><i>↗</i></button>
+            <button><span class="source-icon kibana">K</span><span><strong>Kibana 日志</strong><small>2026-07-28 · 186 条</small></span><i>↗</i></button>
+            <button><span class="source-icon document">D</span><span><strong>支付接口规范</strong><small>内部知识库</small></span><i>↗</i></button>
+          </div>
+          <button class="add-source">＋ 添加资源</button>
+        </section>
+
+        <section class="inspector-section constraint-section">
+          <button class="section-title expanded">
+            <span>约束 <b>3</b></span><span>⌃</span>
+          </button>
+          <div class="constraint-list">
+            <div><span class="constraint-icon approval">!</span><span><strong>修改前需要审批</strong><small>任何仓库写入均先展示变更方案</small></span></div>
+            <div><span class="constraint-icon scope">◎</span><span><strong>限制资源范围</strong><small>只访问当前任务已添加的资源</small></span></div>
+            <div><span class="constraint-icon verify">✓</span><span><strong>验证后才能完成</strong><small>相关测试通过且无新增高频错误</small></span></div>
+          </div>
+          <button class="add-source">＋ 添加约束</button>
+        </section>
+
+        <section class="inspector-section artifact-section">
+          <button class="section-title expanded">
+            <span>交付包 <b>3</b></span><span>⌃</span>
+          </button>
+          <div class="artifact-card">
+            <span class="artifact-icon">≡</span>
+            <span><strong>根因分析.md</strong><small>草稿 · 刚刚更新</small></span>
+            <button>···</button>
+          </div>
+          <div class="artifact-card change-set-card">
+            <span class="artifact-icon diff-icon">±</span>
+            <span><strong>代码变更集</strong><small>2 个仓库 · 4 个文件</small></span>
+            <button>⌃</button>
+            <div class="repo-change-list">
+              <button><span>finance-pc</span><small>fx-agent</small><b>+24 <i>−8</i></b></button>
+              <button><span>payment-service</span><small>hotfix/timeout</small><b>+16 <i>−3</i></b></button>
+            </div>
+          </div>
+          <div class="artifact-card">
+            <span class="artifact-icon verify-artifact">✓</span>
+            <span><strong>验证结果</strong><small>8 项通过 · 1 项执行中</small></span>
+            <button>···</button>
+          </div>
+        </section>
+      </aside>
+    </div>
+
+    <div class="settings-overlay" id="settingsDialog" hidden>
+      <div class="settings-dialog" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+        <aside class="settings-nav">
+          <div class="settings-nav-title" id="settingsTitle">应用设置</div>
+          <div class="settings-nav-label">应用</div>
+          <button class="settings-nav-item active" data-settings-panel="general">⚙ <span>通用</span></button>
+          <button class="settings-nav-item" data-settings-panel="appearance">◐ <span>外观</span></button>
+          <div class="settings-nav-label">Agents</div>
+          <button class="settings-nav-item" data-settings-panel="codex">⌘ <span>本地 Codex</span></button>
+          <button class="settings-nav-item" data-settings-panel="company">A <span>公司 API</span></button>
+          <div class="settings-nav-label">关于</div>
+          <button class="settings-nav-item" data-settings-panel="about">ⓘ <span>关于 Work Studio</span></button>
+        </aside>
+
+        <section class="settings-content">
+          <header class="settings-content-header">
+            <strong id="settingsPanelTitle">通用</strong>
+            <button class="settings-close" id="settingsClose" aria-label="关闭设置">×</button>
+          </header>
+
+          <div class="settings-panel active" data-panel="general">
+            <div class="setting-group">
+              <h3>任务</h3>
+              <label class="setting-row">
+                <span><strong>任务展示范围</strong><small>收藏、待确认和需要注意的任务始终显示。</small></span>
+                <select id="taskRange"><option>最近 7 天</option><option>最近 15 天</option><option>最近 30 天</option><option>所有任务</option></select>
+              </label>
+              <label class="setting-row">
+                <span><strong>默认执行权限</strong><small>新任务创建时使用的初始权限。</small></span>
+                <select><option>修改前审批</option><option>自动修改</option><option>完全访问</option></select>
+              </label>
+            </div>
+            <div class="setting-group">
+              <h3>通知</h3>
+              <label class="setting-row">
+                <span><strong>任务需要确认时通知我</strong><small>任务进入待确认状态时发送桌面通知。</small></span>
+                <button class="toggle-switch on setting-toggle" type="button" role="switch" aria-checked="true"><i></i></button>
+              </label>
+            </div>
+          </div>
+
+          <div class="settings-panel" data-panel="appearance" hidden>
+            <div class="setting-group">
+              <h3>主题</h3>
+              <div class="theme-options">
+                <button class="theme-option active"><span class="theme-preview dark-preview"></span><strong>深色</strong><small>当前主题</small></button>
+                <button class="theme-option"><span class="theme-preview light-preview"></span><strong>浅色</strong><small>明亮界面</small></button>
+                <button class="theme-option"><span class="theme-preview system-preview"></span><strong>跟随系统</strong><small>自动切换</small></button>
+              </div>
+            </div>
+            <div class="setting-group">
+              <h3>界面密度</h3>
+              <label class="setting-row"><span><strong>任务列表密度</strong><small>控制侧边栏每项任务占用的空间。</small></span><select><option>舒适</option><option>紧凑</option></select></label>
+            </div>
+          </div>
+
+          <div class="settings-panel" data-panel="codex" hidden>
+            <div class="agent-health"><span class="plugin-logo codex-settings-logo">⌘</span><span><strong>本地 Codex</strong><small><i></i> App Server 已连接 · 0.28.0</small></span><button>重新检测</button></div>
+            <div class="setting-group">
+              <h3>安装</h3>
+              <label class="setting-field"><span>Codex 可执行文件</span><div><input value="/opt/homebrew/bin/codex" /><button>选择</button></div><small>留空则从系统 PATH 中使用 codex。</small></label>
+            </div>
+            <div class="setting-group">
+              <h3>连接</h3>
+              <label class="setting-row"><span><strong>App Server 传输</strong><small>本地桌面端推荐使用 stdio。</small></span><select><option>stdio</option><option>Unix Socket</option></select></label>
+              <label class="setting-row"><span><strong>默认模型</strong><small>创建本地编码任务时默认使用。</small></span><select><option>自动选择</option><option>GPT-5.5</option></select></label>
+            </div>
+          </div>
+
+          <div class="settings-panel" data-panel="company" hidden>
+            <div class="agent-health"><span class="plugin-logo company-settings-logo">A</span><span><strong>公司 API</strong><small><i></i> 网关连接正常</small></span><button>测试连接</button></div>
+            <div class="setting-group">
+              <h3>模型网关</h3>
+              <label class="setting-field"><span>API 地址</span><div><input value="https://ai-gateway.xtadmins.com/v1" /></div></label>
+              <label class="setting-field"><span>API Key</span><div><input type="password" value="xt-company-api-key" /><button>更新</button></div><small>密钥保存在系统钥匙串中，不会写入任务记录。</small></label>
+              <label class="setting-row"><span><strong>默认模型</strong><small>调研与资料问答任务默认使用。</small></span><select><option>company-gpt-5</option><option>company-fast</option></select></label>
+            </div>
+          </div>
+
+          <div class="settings-panel" data-panel="about" hidden>
+            <div class="about-panel">
+              <div class="brand-mark large-mark"><span></span><span></span></div>
+              <h2>Work Studio</h2>
+              <p>版本 0.1.0 · 以任务为起点的 AI 工作台</p>
+              <div><span>Codex App Server</span><b>已连接</b></div>
+              <div><span>配置目录</span><code>~/.work-studio</code></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="skill-preview-overlay" id="skillPreview" hidden>
+      <div class="skill-preview-panel">
+        <header><div><span class="eyebrow">SKILL.md</span><strong id="skillPreviewTitle">issue-flow</strong></div><button id="skillPreviewClose">×</button></header>
+        <div class="skill-preview-meta"><span>来源：工作区</span><span>路径：~/.codex/skills/issue-flow/SKILL.md</span></div>
+        <article>
+          <h2>Issue Flow</h2>
+          <p>用于 XT 项目前后端一体化日志排查。通过 Kibana、Sentry 和本地源码定位线上问题，并给出证据充分的结论。</p>
+          <h3>执行流程</h3>
+          <ol><li>收集 traceId、时间范围和用户操作路径。</li><li>关联 Sentry 事件与 Kibana 日志。</li><li>定位前后端代码调用链。</li><li>形成根因、修复建议和验证步骤。</li></ol>
+        </article>
+      </div>
+    </div>
+
+    <div class="toast" id="toast" role="status">已将补充要求发送给当前任务</div>
+    <script src="./app.js"></script>
+  </body>
+</html>

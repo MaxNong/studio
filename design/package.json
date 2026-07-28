@@ -1,0 +1,11 @@
+{
+  "name": "xt-work-studio",
+  "version": "0.1.0",
+  "private": true,
+  "description": "XT Work Studio 可交互设计原型",
+  "type": "module",
+  "scripts": {
+    "dev": "node server.mjs",
+    "start": "node server.mjs"
+  }
+}
